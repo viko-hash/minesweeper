@@ -1,0 +1,22 @@
+@import '../../variables';
+.board-head {
+	display: flex;
+	flex-direction: row;
+	height: 55px;
+	justify-content: space-between;
+	align-items: center;
+	border-left: 1px solid $common-border-color;
+	border-right: 1px solid $common-border-color;
+	.reset,
+	.flag-count,
+	.timer {
+		width: 55px;
+		height: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.reset {
+		font-size: 25px;
+	}
+}

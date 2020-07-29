@@ -1,0 +1,37 @@
+@import '../../variables';
+
+.board {
+	width: 499px;
+	height: 499px;
+	border: 1px solid $common-border-color;
+	border-bottom: none;
+	background-color: rgb(56, 214, 188);
+	.row {
+		display: flex;
+		height: 50px;
+		&:last-child {
+			border-bottom: none;
+			height: 50px;
+		}
+		.cell {
+			border-right: 1px solid $common-border-color;
+			width: 49px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-bottom: 1px solid $common-border-color;
+			&.open {
+				background-color: $open-background-color;
+				&:hover {
+					background-color: $open-background-color;
+				}
+			}
+			&:hover {
+				background-color: $hover-background;
+			}
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+}
