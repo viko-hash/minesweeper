@@ -18,18 +18,27 @@ body {
 			display: flex;
 			flex-direction: column;
 			height: 590px;
+			width: 800px;
 			h2 {
 				text-align: center;
-				border-left: 1px solid $common-border-color;
-				border-top: 1px solid $common-border-color;
-				border-right: 1px solid $common-border-color;
+				margin-bottom: 20px;
 			}
 			.input-container {
+				display: flex;
 				margin-bottom: 10px;
-				color: red;
-				width: 80%;
+				color: #10106eee;
+				flex-direction: column;
+				align-items: center;
+
 				.row-input {
+					display: flex;
+					flex-direction: column;
 					margin-right: 5px;
+					margin-bottom: 10px;
+				}
+				.column-input {
+					display: flex;
+					flex-direction: column;
 					margin-bottom: 10px;
 				}
 			}
