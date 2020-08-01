@@ -13,9 +13,7 @@ const BoardHeader = (props) => {
 		props.status === 'running' || props.status === 'waiting' ? (
 			<i className='icon ion-happy-outline' />
 		) : (
-			<button style={{ border: 'none', background: 'yellow' }}>
-				Reset Game
-			</button>
+			<div style={{ border: 'none', fontSize: '16px' }}>Reset Game</div>
 		);
 	return (
 		<div className='board-head'>

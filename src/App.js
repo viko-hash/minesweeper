@@ -99,35 +99,46 @@ class App extends Component {
 		} = this.state;
 		return (
 			<div className='minesweeper'>
+				<h2>Play Minesweeper!!</h2>
 				{!showTable ? (
 					<div className='input-container'>
-						<div className='row-input'>
-							<label>Enter Rows: </label>
-							<input
-								type='number'
-								value={rows}
-								onChange={(e) => this.setState({ rows: e.target.value })}
-							/>
+						<div>
+							<div className='row-input'>
+								<label>Enter Row :</label>
+								<input
+									type='number'
+									value={rows}
+									onChange={(e) => this.setState({ rows: e.target.value })}
+								/>
+							</div>
+
+							<div className='column-input'>
+								<label>Enter Column :</label>
+								<input
+									type='number'
+									value={columns}
+									onChange={(e) => this.setState({ columns: e.target.value })}
+								/>
+							</div>
 						</div>
 
-						<label>Enter Columns: </label>
-						<input
-							type='number'
-							value={columns}
-							onChange={(e) => this.setState({ columns: e.target.value })}
-						></input>
+						<button
+							style={{ padding: '10px' }}
+							onClick={() => this.setState({ showTable: true })}
+						>
+							Click to Play
+						</button>
 					</div>
 				) : null}
 
-				<h2>Play Minesweeper!!</h2>
-				{!showTable ? (
+				{/* {!showTable ? (
 					<button
 						style={{ padding: '10px' }}
 						onClick={() => this.setState({ showTable: true })}
 					>
 						Click to Play
 					</button>
-				) : null}
+				) : null} */}
 				{showTable ? (
 					<>
 						<BoardHeader
