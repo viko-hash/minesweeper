@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BoardHeader from './components/BoardHeader';
 import GameBoard from './components/GameBoard';
+import Restart from './components/Restart';
 
 class App extends Component {
 	constructor() {
@@ -11,7 +12,7 @@ class App extends Component {
 			time: 0, // in seconds
 			flagCount: 10,
 			openCells: 0,
-			mines: 10,
+			mines: 50,
 			rows: 10,
 			columns: 10,
 			showTable: false
@@ -71,12 +72,10 @@ class App extends Component {
 			this.state.mines + this.state.openCells >=
 			this.state.rows * this.state.columns
 		) {
-			this.setState(
-				{
-					gameStatus: 'winner'
-				},
-				alert('you won!')
-			);
+			this.setState({
+				gameStatus: 'winner',
+				showTable: false
+			});
 		}
 	};
 
@@ -100,7 +99,7 @@ class App extends Component {
 		return (
 			<div className='minesweeper'>
 				<h2>Play Minesweeper!!</h2>
-				{!showTable ? (
+				{!showTable && gameStatus !== 'winner' ? (
 					<div className='input-container'>
 						<div>
 							<div className='row-input'>
@@ -108,7 +107,11 @@ class App extends Component {
 								<input
 									type='number'
 									value={rows}
-									onChange={(e) => this.setState({ rows: e.target.value })}
+									onChange={(e) =>
+										this.setState({
+											rows: e.target.value
+										})
+									}
 								/>
 							</div>
 
@@ -131,14 +134,6 @@ class App extends Component {
 					</div>
 				) : null}
 
-				{/* {!showTable ? (
-					<button
-						style={{ padding: '10px' }}
-						onClick={() => this.setState({ showTable: true })}
-					>
-						Click to Play
-					</button>
-				) : null} */}
 				{showTable ? (
 					<>
 						<BoardHeader
@@ -158,7 +153,9 @@ class App extends Component {
 							changeFlagAmount={this.changeFlagAmount}
 						/>
 					</>
-				) : null}
+				) : (
+					<Restart status={gameStatus} reset={this.reset} />
+				)}
 			</div>
 		);
 	}
