@@ -4,7 +4,15 @@
 	color: $white;
 	border-radius: 10px;
 	border: none;
+	&:hover,
+	&:focus {
+		background: $white;
+		color: $start-background;
+		border: 1px solid $start-background;
+	}
 	&:disabled {
 		background: $disabled;
+		border: none;
+		color: $white;
 	}
 }
