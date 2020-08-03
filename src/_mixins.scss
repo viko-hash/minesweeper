@@ -1,0 +1,10 @@
+@mixin button-styles {
+	padding: 10px;
+	background: $start-background;
+	color: $white;
+	border-radius: 10px;
+	border: none;
+	&:disabled {
+		background: $disabled;
+	}
+}

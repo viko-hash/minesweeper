@@ -12,9 +12,9 @@ class App extends Component {
 			time: 0, // in seconds
 			flagCount: 10,
 			openCells: 0,
-			mines: 50,
-			rows: 10,
-			columns: 10,
+			mines: 20,
+			rows: undefined,
+			columns: undefined,
 			showTable: false
 		};
 
@@ -30,7 +30,7 @@ class App extends Component {
 
 	reset = () => {
 		this.intervals.map(clearInterval);
-		// base state is required otherwise all varables needs to be reset using setState
+		/* base state is required otherwise all varables needs to be reset using setState */
 		this.setState({ ...this.baseState }, () => {
 			this.intervals = [];
 		});
@@ -40,7 +40,9 @@ class App extends Component {
 		this.intervals.push(setInterval(fn, t));
 	};
 
-	// for increasing every second
+	/*
+	 * tick - for increasing every second
+	 */
 	tick = () => {
 		if (this.state.openCells > 0 && this.state.gameStatus === 'running') {
 			let time = this.state.time + 1;
@@ -48,7 +50,10 @@ class App extends Component {
 		}
 	};
 
-	// to handle click of each cell
+	/*
+	 * handleCellClick - to handle click of each cell
+	 */
+
 	handleCellClick = () => {
 		if (this.state.openCells === 0 && this.state.gameStatus !== 'running') {
 			this.setState(
@@ -96,40 +101,43 @@ class App extends Component {
 			columns,
 			showTable
 		} = this.state;
+
 		return (
 			<div className='minesweeper'>
 				<h2>Play Minesweeper!!</h2>
 				{!showTable && gameStatus !== 'winner' ? (
 					<div className='input-container'>
 						<div>
-							<div className='row-input'>
-								<label>Enter Row :</label>
+							<div className='field'>
 								<input
 									type='number'
+									name='rowNumber'
+									id='rowNumber'
+									min={10}
+									max={15}
+									placeholder='Enter value between 8 and 20'
 									value={rows}
 									onChange={(e) =>
 										this.setState({
-											rows: e.target.value
+											rows: e.target.value,
+											columns: e.target.value
 										})
 									}
 								/>
-							</div>
-
-							<div className='column-input'>
-								<label>Enter Column :</label>
-								<input
-									type='number'
-									value={columns}
-									onChange={(e) => this.setState({ columns: e.target.value })}
-								/>
+								<label htmlFor='rowNumber'>Enter Row to Play</label>
 							</div>
 						</div>
 
 						<button
-							style={{ padding: '10px' }}
-							onClick={() => this.setState({ showTable: true })}
+							className='start-game'
+							onClick={() =>
+								this.setState({
+									showTable: true
+								})
+							}
+							disabled={rows === undefined || rows < 8 || rows > 20}
 						>
-							Click to Play
+							Start Game
 						</button>
 					</div>
 				) : null}

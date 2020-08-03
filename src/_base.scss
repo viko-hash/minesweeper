@@ -1,7 +1,7 @@
 @import 'components/BoardHeader/base';
 @import 'components/GameBoard/base';
-
 @import './variables';
+@import './mixins';
 * {
 	margin: 0;
 	padding: 0;
@@ -15,6 +15,7 @@ body {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		background-color: lemonchiffon;
 		.minesweeper {
 			display: flex;
 			flex-direction: column;
@@ -51,7 +52,78 @@ body {
 				.restart-button {
 					padding: 10px;
 					margin-top: 10px;
+					@include button-styles;
 				}
+			}
+			form {
+				margin: 32px 0;
+			}
+
+			.field {
+				display: flex;
+				flex-flow: column-reverse;
+				margin-bottom: 16px;
+				align-items: center;
+			}
+
+			label,
+			input {
+				transition: all 0.2s;
+				touch-action: manipulation;
+			}
+
+			input {
+				font-size: 30px;
+				border: 0;
+				border-bottom: 1px solid $open-background-color;
+				font-family: inherit;
+				-webkit-appearance: none;
+				border-radius: 0;
+				padding: 0;
+				cursor: text;
+				width: 240px;
+				text-align: center;
+			}
+
+			input:focus {
+				outline: 0;
+				border-bottom: 1px solid $common-border-color;
+			}
+
+			label {
+				letter-spacing: 1px;
+			}
+
+			input:placeholder-shown + label {
+				cursor: text;
+				max-width: 66.66%;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				transform-origin: left bottom;
+				transform: translate(0, 28px) scale(1.1);
+			}
+
+			::-webkit-input-placeholder {
+				opacity: 0;
+				transition: inherit;
+			}
+
+			input:focus::-webkit-input-placeholder {
+				opacity: 1;
+			}
+
+			input:not(:placeholder-shown) + label,
+			input:focus + label {
+				transform: translate(0, 0) scale(1);
+				cursor: pointer;
+			}
+			input::placeholder {
+				color: $placeholder;
+				font-size: 16px;
+			}
+			.start-game {
+				@include button-styles;
 			}
 		}
 	}
