@@ -57,7 +57,7 @@ class GameBoard extends Component {
 
 	// create function to turn on and off flags
 	flag = (cell) => {
-		if (this.props.status === 'ended') {
+		if (this.props.status === 'ended' || this.props.status === 'winner') {
 			return;
 		}
 
@@ -72,7 +72,7 @@ class GameBoard extends Component {
 	};
 
 	open = (cell) => {
-		if (this.props.status === 'ended') {
+		if (this.props.status === 'ended' || this.props.status === 'winner') {
 			return;
 		}
 		// first we need to find mines around it asynchronously,

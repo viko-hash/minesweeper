@@ -9,12 +9,15 @@ const BoardHeader = (props) => {
 	formattedSeconds =
 		formattedSeconds < 10 ? `0${formattedSeconds}` : formattedSeconds;
 	let time = `${minutes}:${formattedSeconds}`;
-	let status =
-		props.status === 'running' || props.status === 'waiting' ? (
-			<i className='icon ion-happy-outline' />
-		) : (
-			<div style={{ border: 'none', fontSize: '16px' }}>Reset Game</div>
-		);
+	let status;
+	if (props.status === 'running' || props.status === 'waiting') {
+		status = <i className='icon ion-happy-outline' />;
+	} else if (props.status === 'winner') {
+		status = 'You Won';
+	} else {
+		status = <div style={{ border: 'none', fontSize: '16px' }}>Reset Game</div>;
+	}
+
 	return (
 		<div className='board-head'>
 			<div className='flag-count'>{props.flagsUsed}</div>
