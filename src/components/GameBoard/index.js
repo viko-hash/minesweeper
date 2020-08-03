@@ -10,7 +10,8 @@ class GameBoard extends Component {
 		};
 	}
 
-	// to tell that if new props from parent are recieved then re render the board
+	/* to tell that if new props from parent are recieved then re render the board */
+
 	componentWillReceiveProps(nextProps) {
 		if (
 			this.props.openCells > nextProps.openCells ||
@@ -22,8 +23,11 @@ class GameBoard extends Component {
 		}
 	}
 
+	/**
+	 * createBoard - create 2d grid for our board based off the number of columns and rows passed in from props
+	 * @param {object} -  props object having rows and columns
+	 */
 	createBoard = (props) => {
-		//1- create 2d grid for our board based off the number of columns and rows passed in from props
 		let board = [];
 		for (let i = 0; i < props.rows; i++) {
 			board.push([]);
@@ -38,7 +42,7 @@ class GameBoard extends Component {
 				});
 			}
 		}
-		//2- after we create the board we add mines randomly!
+		/* after we create the board we add mines randomly! */
 		for (let i = 0; i < props.mines; i++) {
 			let randomRow = Math.floor(Math.random() * props.rows);
 			let randomCol = Math.floor(Math.random() * props.columns);
@@ -46,7 +50,7 @@ class GameBoard extends Component {
 			let cell = board[randomRow][randomCol];
 
 			if (cell.hasMine) {
-				// if it already has a mine send it back one in the loop and go to another random cell
+				/* if it already has a mine send it back one in the loop and go to another random cell */
 				i--;
 			} else {
 				cell.hasMine = true;
@@ -55,13 +59,16 @@ class GameBoard extends Component {
 		return board;
 	};
 
-	// create function to turn on and off flags
+	/**
+	 * flag - create 2d grid for our board based off the number of columns and rows passed in from props
+	 * @param {object} - cell object to check the hasFlag and isOpen status
+	 */
 	flag = (cell) => {
 		if (this.props.status === 'ended' || this.props.status === 'winner') {
 			return;
 		}
 
-		// change flag only when cell is not open
+		/* change flag only when cell is not open */
 		if (!cell.isOpen) {
 			let rows = this.state.rows;
 
@@ -71,12 +78,16 @@ class GameBoard extends Component {
 		}
 	};
 
+	/**
+	 * open- first we need to find mines around it asynchronously,
+		because we need to make sure to calculate the mines before anything else runs
+	 * @param {object} - cell object
+	 */
 	open = (cell) => {
 		if (this.props.status === 'ended' || this.props.status === 'winner') {
 			return;
 		}
-		// first we need to find mines around it asynchronously,
-		// because we need to make sure to calculate the mines before anything else runs
+
 		let countMinesAsync = new Promise((resolve) => {
 			let mines = this.findMines(cell);
 			resolve(mines);
@@ -115,6 +126,10 @@ class GameBoard extends Component {
 		});
 	};
 
+	/**
+	 * findMines -  look for mines in 1 cell block around the chosen cell
+	 * @param {object} - cell object to check the rows and columns
+	 */
 	findMines = (cell) => {
 		let minesInProximity = 0;
 		// look for mines in 1 cell block around the chosen cell
@@ -140,10 +155,13 @@ class GameBoard extends Component {
 		return minesInProximity;
 	};
 
+	/**
+	 * openAroundCell - loop through each cell and open cells one by one in each row around it until we find one with a mine in it
+	 * @param {object} - cell object to check the rows and columns
+	 */
 	openAroundCell = (cell) => {
 		let rows = this.state.rows;
 
-		// loop through each cell and open cells one by one in each row around it until we find one with a mine in it
 		for (let row = -1; row <= 1; row++) {
 			for (let col = -1; col <= 1; col++) {
 				if (cell.y + row >= 0 && cell.x + col >= 0) {
