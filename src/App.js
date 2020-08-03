@@ -113,8 +113,6 @@ class App extends Component {
 									type='number'
 									name='rowNumber'
 									id='rowNumber'
-									min={10}
-									max={15}
 									placeholder='Enter value between 8 and 20'
 									value={rows}
 									onChange={(e) =>

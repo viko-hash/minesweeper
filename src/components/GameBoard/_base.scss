@@ -7,7 +7,7 @@
 	.row {
 		display: flex;
 		height: 50px;
-		background-color: lavenderblush;
+		background-color: $cell-background;
 
 		&:last-child {
 			height: 50px;

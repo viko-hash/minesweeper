@@ -1,4 +1,6 @@
 @import '../../variables';
+@import '../../mixins';
+
 .board-head {
 	display: flex;
 	flex-direction: row;
@@ -9,7 +11,7 @@
 	border-left: 1px solid $common-border-color;
 	border-right: 1px solid $common-border-color;
 	padding: 20px;
-	background: aliceblue;
+	background: $header-background;
 	.reset,
 	.flag-count,
 	.timer {
@@ -18,12 +20,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 1px solid rebeccapurple;
+		border: 1px solid $header-elem-border;
 		border-radius: 4px;
 	}
 	.reset {
 		font-size: 25px;
+		@include button-styles;
 		padding: 30px;
-		background: floralwhite;
 	}
 }
