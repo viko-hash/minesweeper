@@ -111,18 +111,31 @@ class App extends Component {
 							<div className='field'>
 								<input
 									type='number'
+									name='columnNumber'
+									id='columnNumber'
+									placeholder='Enter value between 8 and 20'
+									value={columns}
+									onChange={(e) =>
+										this.setState({
+											columns: e.target.value
+										})
+									}
+								/>
+								<label htmlFor='columnNumber'>Enter Column</label>
+
+								<input
+									type='number'
 									name='rowNumber'
 									id='rowNumber'
 									placeholder='Enter value between 8 and 20'
 									value={rows}
 									onChange={(e) =>
 										this.setState({
-											rows: e.target.value,
-											columns: e.target.value
+											rows: e.target.value
 										})
 									}
 								/>
-								<label htmlFor='rowNumber'>Enter Row to Play</label>
+								<label htmlFor='rowNumber'>Enter Row</label>
 							</div>
 						</div>
 
@@ -133,7 +146,14 @@ class App extends Component {
 									showTable: true
 								})
 							}
-							disabled={rows === undefined || rows < 8 || rows > 20}
+							disabled={
+								rows === undefined ||
+								columns === undefined ||
+								rows < 8 ||
+								rows > 20 ||
+								columns < 8 ||
+								columns > 20
+							}
 						>
 							Start Game
 						</button>
