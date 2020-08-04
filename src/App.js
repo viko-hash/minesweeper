@@ -10,7 +10,7 @@ class App extends Component {
 		this.state = {
 			gameStatus: 'waiting', // can be running, waiting, or ended
 			time: 0, // in seconds
-			flagCount: 10,
+			flagCount: 20,
 			openCells: 0,
 			mines: 20,
 			rows: undefined,
@@ -69,7 +69,6 @@ class App extends Component {
 	};
 
 	changeFlagAmount = (amount) => {
-		console.log('App :', amount);
 		this.setState({ flagCount: this.state.flagCount + amount });
 	};
 
