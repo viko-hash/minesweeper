@@ -10,12 +10,12 @@
 html,
 body {
 	height: 100%;
+	background: $body-background;
 	#root {
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: lemonchiffon;
 		.minesweeper {
 			display: flex;
 			flex-direction: column;
@@ -75,19 +75,18 @@ body {
 			input {
 				font-size: 30px;
 				border: 0;
-				border-bottom: 1px solid $open-background-color;
+				border: 1px solid $open-background-color;
 				font-family: inherit;
 				-webkit-appearance: none;
-				border-radius: 0;
+				border-radius: 10px;
 				padding: 0;
 				cursor: text;
-				width: 240px;
+				width: 250px;
 				text-align: center;
 			}
 
 			input:focus {
 				outline: 0;
-				border-bottom: 1px solid $common-border-color;
 			}
 
 			label {
