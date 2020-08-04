@@ -10,7 +10,7 @@ class App extends Component {
 		this.state = {
 			gameStatus: 'waiting', // can be running, waiting, or ended
 			time: 0, // in seconds
-			flagCount: 10,
+			flagCount: 20,
 			openCells: 0,
 			mines: 20,
 			rows: undefined,
@@ -22,7 +22,7 @@ class App extends Component {
 		this.intervals = [];
 	}
 
-	componentDidUpdate(nextProps, nextState) {
+	componentDidUpdate(prevProps, prevState) {
 		if (this.state.gameStatus === 'running') {
 			this.checkForWinner();
 		}

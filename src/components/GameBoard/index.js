@@ -107,6 +107,9 @@ class GameBoard extends Component {
 				});
 			} else {
 				if (!cell.hasFlag && !current.isOpen) {
+					if (current.hasMine && this.props.openCells !== 0) {
+						this.props.endGame();
+					}
 					this.props.onCellClick();
 
 					current.isOpen = true;
@@ -116,10 +119,6 @@ class GameBoard extends Component {
 					// its a flag, not a mine so open cells around it!
 					if (!current.hasMine && numberOfMines === 0) {
 						this.openAroundCell(cell);
-					}
-
-					if (current.hasMine && this.props.openCells !== 0) {
-						this.props.endGame();
 					}
 				}
 			}
