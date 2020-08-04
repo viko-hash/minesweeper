@@ -22,7 +22,7 @@ class App extends Component {
 		this.intervals = [];
 	}
 
-	componentDidUpdate(nextProps, nextState) {
+	componentDidUpdate(prevProps, prevState) {
 		if (this.state.gameStatus === 'running') {
 			this.checkForWinner();
 		}
@@ -69,6 +69,7 @@ class App extends Component {
 	};
 
 	changeFlagAmount = (amount) => {
+		console.log('App :', amount);
 		this.setState({ flagCount: this.state.flagCount + amount });
 	};
 
