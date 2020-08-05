@@ -177,6 +177,7 @@ class App extends Component {
 							status={gameStatus}
 							onCellClick={this.handleCellClick}
 							changeFlagAmount={this.changeFlagAmount}
+							flagCount={flagCount}
 						/>
 					</>
 				) : (

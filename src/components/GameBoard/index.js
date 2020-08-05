@@ -68,6 +68,15 @@ class GameBoard extends Component {
 			return;
 		}
 
+		// to handle negative flagcounts
+		if (this.props.flagCount <= 0 && !cell.hasFlag) {
+			return;
+		}
+
+		if (cell.hasFlag || this.props.flagCount <= 0) {
+			this.props.changeFlagAmount(1);
+		}
+
 		/* change flag only when cell is not open */
 		if (!cell.isOpen) {
 			let rows = this.state.rows;
