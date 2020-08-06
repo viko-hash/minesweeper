@@ -20,7 +20,8 @@ const BoardHeader = (props) => {
 
 	return (
 		<div className='board-head'>
-			<div className='flag-count'>{props.flagsUsed}</div>
+			<div className='flag-count'>Flags: {props.flagsUsed}</div>
+
 			<button className='reset' onClick={props.reset}>
 				{status}
 			</button>
