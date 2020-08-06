@@ -23,6 +23,9 @@
 		border: 1px solid $header-elem-border;
 		border-radius: 4px;
 	}
+	.flag-count {
+		width: 70px;
+	}
 	.reset {
 		font-size: 25px;
 		@include button-styles;

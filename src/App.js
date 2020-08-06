@@ -12,7 +12,7 @@ class App extends Component {
 			time: 0, // in seconds
 			flagCount: 20,
 			openCells: 0,
-			mines: 20,
+			mines: undefined,
 			rows: undefined,
 			columns: undefined,
 			showTable: false
@@ -74,7 +74,7 @@ class App extends Component {
 
 	checkForWinner = () => {
 		if (
-			this.state.mines + this.state.openCells >=
+			Number(this.state.mines) + this.state.openCells >=
 			this.state.rows * this.state.columns
 		) {
 			this.setState({
@@ -111,10 +111,28 @@ class App extends Component {
 							<div className='field'>
 								<input
 									type='number'
+									name='minesNumber'
+									id='minesNumber'
+									placeholder='Enter value between 20 to 50'
+									value={mines}
+									min={20}
+									max={50}
+									onChange={(e) =>
+										this.setState({
+											mines: e.target.value
+										})
+									}
+								/>
+								<label htmlFor='minesNumber'>Enter Mines</label>
+
+								<input
+									type='number'
 									name='columnNumber'
 									id='columnNumber'
-									placeholder='Enter value between 8 and 20'
+									placeholder='Enter value between 8 to 20'
 									value={columns}
+									min={8}
+									max={20}
 									onChange={(e) =>
 										this.setState({
 											columns: e.target.value
@@ -127,8 +145,10 @@ class App extends Component {
 									type='number'
 									name='rowNumber'
 									id='rowNumber'
-									placeholder='Enter value between 8 and 20'
+									placeholder='Enter value between 8 to 20'
 									value={rows}
+									min={8}
+									max={20}
 									onChange={(e) =>
 										this.setState({
 											rows: e.target.value
@@ -143,16 +163,20 @@ class App extends Component {
 							className='start-game'
 							onClick={() =>
 								this.setState({
-									showTable: true
+									showTable: true,
+									flagCount: Number(this.state.mines)
 								})
 							}
 							disabled={
 								rows === undefined ||
 								columns === undefined ||
+								mines === undefined ||
 								rows < 8 ||
 								rows > 20 ||
 								columns < 8 ||
-								columns > 20
+								columns > 20 ||
+								mines < 20 ||
+								mines > 50
 							}
 						>
 							Start Game
